@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { ColumnApi, GridApi } from 'ag-grid-enterprise';
-import dayjs from 'dayjs';
-import * as data from './data';
 
 @Component({
   selector: 'my-app',
@@ -9,12 +6,20 @@ import * as data from './data';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  gridApi: GridApi;
-  gridColumnApi: ColumnApi;
+  gridApi;
+  gridColumnApi;
 
-  columnDefs = data.csvTestColumnDefs;
+  columnDefs = [
+    { field: 'make', filter: 'agTextColumnFilter' },
+    { field: 'model' },
+    { field: 'price' },
+  ];
 
-  rowData = data.csvTestData;
+  rowData = [
+    { make: 'Toyota', model: 'Celica', price: 35000 },
+    { make: 'Ford', model: 'Mondeo', price: 32000 },
+    { make: 'Porsche', model: 'Boxter', price: 72000 },
+  ];
 
   onGridReady(params) {
     this.gridApi = params.api;
@@ -37,19 +42,6 @@ export class AppComponent {
         `Filter model is ${JSON.stringify(this.gridApi.getFilterModel())}`
       );
       this.gridApi.onFilterChanged();
-    }
-  }
-
-  exportAs(format: string = 'CSV') {
-    if (this.gridApi) {
-      const datestr = dayjs().format('YYYYMMDDHHmmss');
-      switch (format) {
-        case 'CSV':
-          this.gridApi.exportDataAsCsv({ fileName: `export_${datestr}.csv` });
-          break;
-        default:
-          break;
-      }
     }
   }
 }
