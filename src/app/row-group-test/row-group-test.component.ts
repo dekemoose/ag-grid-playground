@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import 'ag-grid-enterprise';
-import { ColDef,
-    GroupCellRendererParams,
-    RowGroupingDisplayType } from 'ag-grid-community';
+import { ColDef, RowGroupingDisplayType } from 'ag-grid-community';
 import { SimpleCellRenderer } from './simple-cell-renderer.component';
-import { getData } from '../data';
+import { getData } from './data';
 
 @Component({
   selector: 'app-row-group-test',
