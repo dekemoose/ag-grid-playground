@@ -69,10 +69,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ag-grid-playground:build:production"
+              "browserTarget": "ag-grid-playground:build:production",
+              "port": 4300
             },
             "development": {
-              "browserTarget": "ag-grid-playground:build:development"
+              "browserTarget": "ag-grid-playground:build:development",
+              "port": 4300
             }
           },
           "defaultConfiguration": "development"

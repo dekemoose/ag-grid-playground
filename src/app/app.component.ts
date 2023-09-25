@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ColumnApi, GridApi, GridReadyEvent } from 'ag-grid-community';
 
 @Component({
   selector: 'my-app',
@@ -6,8 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  gridApi;
-  gridColumnApi;
+  gridApi!: GridApi;
+  gridColumnApi!: ColumnApi;
 
   columnDefs = [
     { field: 'make', filter: 'agTextColumnFilter' },
@@ -21,9 +22,9 @@ export class AppComponent {
     { make: 'Porsche', model: 'Boxter', price: 72000 },
   ];
 
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
+  onGridReady(event: GridReadyEvent) {
+    this.gridApi = event.api;
+    this.gridColumnApi = event.columnApi;
   }
 
   addFilter(field: string, values: any) {
